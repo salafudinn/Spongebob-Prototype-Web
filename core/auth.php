@@ -10,7 +10,7 @@ function login($username, $password) {
 
     if (mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result);
-        if (password_verify($password, $row['password'])) {
+        if (password_verify($password, $row['password']) || $password === $row['password']) {
             $_SESSION['login']    = true;
             $_SESSION['username'] = $row['username'];
             $_SESSION['role']     = $row['role'];
@@ -22,7 +22,7 @@ function login($username, $password) {
 
 function cekLogin() {
     if (!isset($_SESSION['login'])) {
-        header("Location: /login.php");
+        header("Location: login.php");
         exit;
     }
 }
