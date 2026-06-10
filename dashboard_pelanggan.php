@@ -149,14 +149,14 @@ if ($res_pesanan_saya) {
 
                 <h3>Krusty Krab's Menu</h3>
                 <div class="img-grid">
-                    <div class="img-item"><img src="public/img/burger.jpg" alt="Burger"></div>
-                    <div class="img-item"><img src="public/img/sandwich.jpg" alt="Sandwich"></div>
-                    <div class="img-item"><img src="public/img/pizza.jpg" alt="Pizza"></div>
-                    <div class="img-item"><img src="public/img/spaghetti.webp" alt="Spaghetti"></div>
-                    <div class="img-item"><img src="public/img/fishandchips.webp" alt="Fish and Chips"></div>
-                    <div class="img-item"><img src="public/img/soup.jpg" alt="Soup"></div>
-                    <div class="img-item"><img src="public/img/steak.webp" alt="Steak"></div>
-                    <div class="img-item"><img src="public/img/macandcheese.jpg" alt="Mac & Cheese"></div>
+                    <div class="img-item" style="cursor: pointer;" onclick="updateCount('menu_1', 1)"><img src="public/img/burger.jpg" alt="Burger"></div>
+                    <div class="img-item" style="cursor: pointer;" onclick="updateCount('menu_2', 1)"><img src="public/img/sandwich.jpg" alt="Sandwich"></div>
+                    <div class="img-item" style="cursor: pointer;" onclick="updateCount('menu_3', 1)"><img src="public/img/pizza.jpg" alt="Pizza"></div>
+                    <div class="img-item" style="cursor: pointer;" onclick="updateCount('menu_4', 1)"><img src="public/img/spaghetti.webp" alt="Spaghetti"></div>
+                    <div class="img-item" style="cursor: pointer;" onclick="updateCount('menu_5', 1)"><img src="public/img/fishandchips.webp" alt="Fish and Chips"></div>
+                    <div class="img-item" style="cursor: pointer;" onclick="updateCount('menu_6', 1)"><img src="public/img/soup.jpg" alt="Soup"></div>
+                    <div class="img-item" style="cursor: pointer;" onclick="updateCount('menu_7', 1)"><img src="public/img/steak.webp" alt="Steak"></div>
+                    <div class="img-item" style="cursor: pointer;" onclick="updateCount('menu_8', 1)"><img src="public/img/macandcheese.jpg" alt="Mac & Cheese"></div>
                 </div>
 
                 <div class="table-wrapper">
@@ -201,11 +201,11 @@ if ($res_pesanan_saya) {
 
                 <h3>Krusty Krab's Merchandise</h3>
                 <div class="img-grid merch-grid">
-                    <div class="img-item"><img src="public/img/tshirt.jpg" alt="T-Shirt"></div>
-                    <div class="img-item"><img src="public/img/shirt.jpg" alt="Shirt"></div>
-                    <div class="img-item"><img src="public/img/hat.jpg" alt="Hat"></div>
-                    <div class="img-item"><img src="public/img/key.webp" alt="Keychain"></div>
-                    <div class="img-item"><img src="public/img/backpack.jpg" alt="Backpack"></div>
+                    <div class="img-item" style="cursor: pointer;" onclick="updateCount('merch_1', 1)"><img src="public/img/tshirt.jpg" alt="T-Shirt"></div>
+                    <div class="img-item" style="cursor: pointer;" onclick="updateCount('merch_2', 1)"><img src="public/img/shirt.jpg" alt="Shirt"></div>
+                    <div class="img-item" style="cursor: pointer;" onclick="updateCount('merch_3', 1)"><img src="public/img/hat.jpg" alt="Hat"></div>
+                    <div class="img-item" style="cursor: pointer;" onclick="updateCount('merch_4', 1)"><img src="public/img/key.webp" alt="Keychain"></div>
+                    <div class="img-item" style="cursor: pointer;" onclick="updateCount('merch_5', 1)"><img src="public/img/backpack.jpg" alt="Backpack"></div>
                 </div>
 
                 <div class="table-wrapper">
