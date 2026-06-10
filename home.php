@@ -21,7 +21,7 @@ if ($_SESSION['role'] === 'karyawan' || $_SESSION['role'] === 'admin') {
 <body class="home-page">
 
     <nav class="navbar">
-        <a href="switch_role.php" title="Toggle Employee/Customer Role">
+        <a href="home.php" title="Home">
             <img src="public/img/kk_logo.png" alt="Krusty Krab Logo" class="nav-logo">
         </a>
         <div class="nav-divider"></div>
