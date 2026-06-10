@@ -319,6 +319,53 @@ if ($res_pesanan_saya) {
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
+        /* STATUS BADGE */
+        .badge-status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            vertical-align: middle;
+        }
+        .status-menunggu { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+        .status-dibuat { background-color: #cce5ff; color: #004085; border: 1px solid #b8daff; }
+        .status-disajikan { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+
+        /* HEADER TOTAL */
+        .live-total {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2b4c3e;
+            background: #fff;
+            padding: 8px 16px;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            display: inline-block;
+            margin-bottom: 24px;
+            border: 1px solid #ddd;
+        }
+
+        /* IMG HOVER */
+        .img-item {
+            background: white;
+            border-radius: 12px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            aspect-ratio: 4/3;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+        }
+        .img-item:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+        
         /* FOOTER */
         footer {
             background: #efefef;
@@ -350,6 +397,18 @@ if ($res_pesanan_saya) {
             val += delta;
             if (val < 0) val = 0;
             input.value = val;
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            let total = 0;
+            const inputs = document.querySelectorAll('.count-display');
+            inputs.forEach(input => {
+                let price = parseInt(input.getAttribute('data-price')) || 0;
+                let count = parseInt(input.value) || 0;
+                total += price * count;
+            });
+            document.getElementById('live-total-display').innerText = "Total Bayar: Rp " + total.toLocaleString('id-ID');
         }
     </script>
 </head>
@@ -375,13 +434,18 @@ if ($res_pesanan_saya) {
             <?php if (!empty($pesanan_saya)): ?>
             <div class="info-tab">
                 <h4>Status Pesanan Terbaru Anda:</h4>
-                <ul>
+                <ul style="list-style: none; padding-left: 0; margin-top: 10px;">
                     <?php foreach($pesanan_saya as $ps): ?>
-                        <li>Pesanan #<?= $ps['id'] ?> (Rp <?= number_format($ps['total_harga'], 0, ',', '.') ?>) - <strong>Status: <?= strtoupper($ps['status']) ?></strong></li>
+                        <li style="margin-bottom: 8px; background: rgba(255,255,255,0.7); padding: 8px 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                            <span>Pesanan #<?= $ps['id'] ?> (Rp <?= number_format($ps['total_harga'], 0, ',', '.') ?>)</span>
+                            <span class="badge-status status-<?= strtolower($ps['status']) ?>"><?= htmlspecialchars($ps['status']) ?></span>
+                        </li>
                     <?php endforeach; ?>
                 </ul>
             </div>
             <?php endif; ?>
+
+            <div id="live-total-display" class="live-total">Total Bayar: Rp 0</div>
 
             <form action="dashboard_pelanggan.php" method="POST">
                 
@@ -418,7 +482,7 @@ if ($res_pesanan_saya) {
                                     <td><?= htmlspecialchars($m['nama']) ?><br><small style="color:#777;"><?= htmlspecialchars($m['deskripsi']) ?></small></td>
                                     <td>Rp <?= number_format($m['harga'], 0, ',', '.') ?></td>
                                     <td>
-                                        <input type="number" name="menu[<?= $m['id'] ?>][jumlah]" id="menu_<?= $m['id'] ?>" value="0" min="0" class="count-display" readonly>
+                                        <input type="number" name="menu[<?= $m['id'] ?>][jumlah]" id="menu_<?= $m['id'] ?>" value="0" min="0" class="count-display" data-price="<?= $m['harga'] ?>" readonly>
                                     </td>
                                     <td>
                                         <div class="action-cell">
@@ -463,7 +527,7 @@ if ($res_pesanan_saya) {
                                     <td><?= htmlspecialchars($m['nama']) ?><br><small style="color:#777;"><?= htmlspecialchars($m['deskripsi']) ?></small></td>
                                     <td>Rp <?= number_format($m['harga'], 0, ',', '.') ?></td>
                                     <td>
-                                        <input type="number" name="merch[<?= $m['id'] ?>][jumlah]" id="merch_<?= $m['id'] ?>" value="0" min="0" class="count-display" readonly>
+                                        <input type="number" name="merch[<?= $m['id'] ?>][jumlah]" id="merch_<?= $m['id'] ?>" value="0" min="0" class="count-display" data-price="<?= $m['harga'] ?>" readonly>
                                     </td>
                                     <td>
                                         <div class="action-cell">

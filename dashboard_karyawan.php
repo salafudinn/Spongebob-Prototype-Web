@@ -146,6 +146,20 @@ if ($pesanan_result) {
             background: #1e362c;
         }
 
+        /* STATUS BADGE */
+        .badge-status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .status-menunggu { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+        .status-dibuat { background-color: #cce5ff; color: #004085; border: 1px solid #b8daff; }
+        .status-disajikan { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+
         /* FOOTER */
         footer {
             background: #efefef;
@@ -212,7 +226,11 @@ if ($pesanan_result) {
                                 <td><?= htmlspecialchars($p['nama_pelanggan']) ?></td>
                                 <td><?= htmlspecialchars($p['catatan']) ?></td>
                                 <td>Rp <?= number_format($p['total_harga'], 0, ',', '.') ?></td>
-                                <td><?= htmlspecialchars($p['status']) ?></td>
+                                <td>
+                                    <span class="badge-status status-<?= strtolower($p['status']) ?>">
+                                        <?= htmlspecialchars($p['status']) ?>
+                                    </span>
+                                </td>
                                 <td>
                                     <form action="dashboard_karyawan.php" method="POST" style="display:inline; display: flex; gap: 4px; justify-content: center; align-items: center;">
                                         <input type="hidden" name="pesanan_id" value="<?= $p['id'] ?>">
