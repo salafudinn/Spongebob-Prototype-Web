@@ -5,7 +5,7 @@ cekLogin();
 if ($_SESSION['role'] === 'karyawan' || $_SESSION['role'] === 'admin') {
     header("Location: dashboard_karyawan.php");
 } else {
-    header("Location: dashboard_pelanggan.php");
+    header("Location: home.php");
 }
 exit;
 ?>
